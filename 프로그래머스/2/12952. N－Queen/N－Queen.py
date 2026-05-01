@@ -1,3 +1,13 @@
+'''
+solved: 2026-05-01
+idea:
+1. queen이 있는지 체크할때 모든 board을 돌면서 N^2으로 체크할 필요 없이, row_check, col_check, diag check 등으로 빠르게 확인 가능.
+2. 각 row별로 queen은 반드시 하나 존재함. -> for으로 row 돌 필요 없음. 남은 queen 개수 = 남은 row 개수
+3. diagonal 개수 = 2 * n - 1개, 그리고 합이 일정한거랑 차가 일정한거 사용하면 각 diagnol별로 배치 가능.
+시간복잡도:
+'''
+
+
 answer = 0
 row_check = []
 col_check = []
@@ -46,3 +56,5 @@ def solution(n):
     place_queen(n, 0, 0)
     
     return answer
+
+# print(solution(4))
