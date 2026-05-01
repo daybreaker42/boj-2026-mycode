@@ -12,7 +12,7 @@ def move(num, source, dest):
     
     move(1, source, dest)
     # answer.append([source, dest])
-    
+        
     move(num - 1, left, dest)
     # answer.append([left, dest])
     return
