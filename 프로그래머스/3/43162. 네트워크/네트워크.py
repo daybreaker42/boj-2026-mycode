@@ -1,39 +1,24 @@
-parent = []
-
-def union(v1, v2):
-    global parent
-    r_v1 = find(v1)
-    r_v2 = find(v2)
+visited = []
+answer = 0
+def dfs(st, n, computers, first):
+    global answer, visited
+    if visited[st]:
+        return
     
-    if r_v1 < r_v2:
-        parent[r_v2] = r_v1
-    elif r_v1 > r_v2:
-        parent[r_v1] = r_v2
-    
+    visited[st] = 1
+    for i in range(n):
+        if computers[st][i] and not visited[i]:
+            dfs(i, n, computers, 0)
+            
+    if first:
+        answer += 1
     return
 
-def find(v1):
-    global parent
-    if v1 == parent[v1]:
-        return v1
-    parent[v1] = find(parent[v1])
-    return parent[v1]
-
 def solution(n, computers):
-    global parent
-    answer = 0
-    parent = [i for i in range(n)]
+    global answer, visited
+    visited = [0 for i in range(n)]
     
     for i in range(n):
-        for j in range(n):
-            if computers[i][j]:
-                union(i, j)
-                
-    # for i in range(n):
-    #     print(parent[i])
-    
-    for i in range(n):
-        if i == parent[i]:
-            answer += 1
+        dfs(i, n, computers, 1)
     
     return answer
